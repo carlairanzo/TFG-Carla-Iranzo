@@ -1,6 +1,6 @@
 
 # parameters ----------------------------------------------------   
-n_sim         <- 500
+n_sim         <- 10000
 n             <- 1000
 mean_baseline <- 10
 delta_0       <- -1
@@ -100,7 +100,7 @@ for (j in 1:n_SCENARIOS){
 }
 t1 <- Sys.time() - t0
 
-
+load("scenarios.Rdata")
 model_data <- data.frame(
   log_var_ratio = log(SCENARIOS$var_ratio),
   sd_change = SCENARIOS$sd_change,
@@ -113,4 +113,6 @@ model_data <- data.frame(
 
 model <- lm(log_var_ratio ~ sd_change + sd_effect + treat_effect + prop_nores + type, data = model_data)
 summary(model)
+
+
 
